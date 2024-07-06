@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+    <title>Поиск вакансий</title>
+</head>
+<body>
+    <h1>Поиск вакансий</h1>
+    <form method="post">
+        <label for="text">Должность:</label>
+        <input type="text" id="text" name="text" required>
+        <br>
+        <label for="salary">Зарплата:</label>
+        <input type="text" id="salary" name="salary">
+        <br>
+        <label for="area">Город:</label>
+        <input type="text" id="area" name="area">
+        <br>
+        <input type="checkbox" id="only_with_salary" name="only_with_salary">
+        <label for="only_with_salary">Только вакансии, в которых указана зарплата</label>
+        <br>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p style="color: red;">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <button type="submit">Найти</button>
+    </form>
+    <a href="/results" class="btn btn-primary">На страницу с базой данных.</a>.
+</body>
+</html>

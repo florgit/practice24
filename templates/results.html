@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask App</title>
+</head>
+<body>
+    <h1>Data from PostgreSQL Table</h1>
+    <a href="/" class="btn btn-primary">На главную страницу</a>.
+    <form action="/results" method="GET">
+        <label for="name">Название вакансии:</label>
+        <input type="text" id="name" name="name">
+        <label for="company">Название компании:</label>
+        <input type="text" id="company" name="company">
+        <label for="city">Город:</label>
+        <input type="text" id="city" name="city">
+        <label for="from_salary">Зарплата от:</label>
+        <input type="text" id="from_salary" name="from_salary">
+        <label for="to_salary">до:</label>
+        <input type="text" id="to_salary" name="to_salary">
+        <button type="submit">Применить фильтр</button>
+    </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p style="color: red;">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <table>
+        <thead>
+            <tr>
+                <th>Job Title</th>
+                <th>Company</th>
+                <th>Location</th>
+                <th>Salary RUB</th>
+                <th>URL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vacancy in data %}
+            <tr>
+                <td>{{ vacancy.name }}</td>
+                <td>{{ vacancy.company }}</td>
+                <td>{{ vacancy.location }}</td>
+                <td>{{ vacancy.salary if vacancy.salary is not none else 'Не указана' }}</td>
+                <td><a href="{{ vacancy.url }}">Link</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
