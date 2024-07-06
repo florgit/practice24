@@ -24,7 +24,7 @@ def index():
         only_with_salary = bool(request.form.get('only_with_salary'))
 
         if not text:
-            flash('Поле поиска обязательно для заполнения')
+            flash('Поле Должность обязательно для заполнения')
             return redirect(url_for('index'))
 
         get_vacancies(text, salary, area, only_with_salary)

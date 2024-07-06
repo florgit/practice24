@@ -24,11 +24,11 @@ def get_vacancies(text, salary, area, only_with_salary):
         if len(data['items']) != 0:
             write_in_db(data['items'])
         else:
-            print('соси, нет вакансий')
+            print('Вакансий с такими параметрами не найдено.')
     elif data.status_code == 400:
         print('Параметры переданы с ошибкой')
     elif data.status_code == 403:
-        print('капча')
+        print('Потребовали ввести капчу')
     elif data.status_code == 404:
         print('Указанная вакансия не существет')
 
